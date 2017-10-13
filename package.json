@@ -1,0 +1,21 @@
+{
+  "name": "Rhyme Game",
+  "version": "1.0.0",
+  "description": "An alexa app That plays a rhyming game with you.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Alexa",
+    "game",
+    "Rhyme",
+	"Fun",
+  ],
+  "author": "Amazon.com",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "alexa-sdk": "^1.0.0",
+    "request": "^2.79.0"
+  }
+}
