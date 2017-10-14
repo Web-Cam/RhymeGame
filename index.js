@@ -38,7 +38,7 @@ var handlers = {
         var seconds = 5;
         var wordInput = this.event.request.intent.slots.customWord.value;
 
-        if (wordInput == null || wordInput === "undefined" || wordInput == '' || wordinput = "I dont know" || wordinput = "I give up") { //Alexa doesnt understand the word, so User loses.
+        if (wordInput == null || wordInput === "undefined" || wordInput == '' || wordInput == "I dont know" || wordInput == "I give up") { //Alexa doesnt understand the word, so User loses.
             this.emit('Unhandled'); //send to unhandled handler
         } else {
             // Create speech output
