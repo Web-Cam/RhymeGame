@@ -53,7 +53,7 @@ var handlers = {
                         seconds--;
                         if (seconds <= 0) {
                             clearInterval(timer);
-                            this.emit('Unhandled');
+                            this.emit(':tell', ' You ran out of time I win!'); //timer ends session still does not call
                         }
                     }, 1000);
                 }
