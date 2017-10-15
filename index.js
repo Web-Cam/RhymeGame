@@ -34,11 +34,14 @@ var handlers = {
         this.emit(':ask', "Welcome to Rhyme Game. Here are the rules, you say a word and I will find a rhyme. If you cant think of a rhyme or respond in 5 seconds you lose!, Now begin!");
         this.emit('GetNewWordIntent');
     },
+	'EndGameUser': function() {
+        this.emit(':tell', "I win! Better luck next time"); // Pulled ending words instead of calling unhandled, now call this instead.. Put call words in utterances
+    },
     'GetNewWordIntent': function() {
         var seconds = 5;
         var wordInput = this.event.request.intent.slots.customWord.value;
 
-        if (wordInput == null || wordInput === "undefined" || wordInput == '' || wordInput == "I dont know" || wordInput == "I give up") { //Alexa doesnt understand the word, so User loses.
+        if (wordInput == null || wordInput === "undefined" || wordInput == '') { //Alexa doesnt understand the word, so User loses.
             this.emit('Unhandled'); //send to unhandled handler
         } else {
             // Create speech output
@@ -47,13 +50,13 @@ var handlers = {
                     this.emit('Unhandled');
                 } else {
                     //this.emit(':tellWithCard', speechOutput, this.t("SKILL_NAME"), speechOutput);
-                    this.emit(':ask', speechOutput + '. <break time="1s"/> say another, I\'m Ready!');
+                    this.emit(':ask', speechOutput );
                     // Start the five-second timer
                     var timer = setInterval(function(){
                         seconds--;
                         if (seconds <= 0) {
                             clearInterval(timer);
-                            this.emit(':tell', ' You ran out of time I win!'); //timer ends session still does not call
+                            //this.emit(':tell', ' You ran out of time I win!');
                         }
                     }, 1000);
                 }
@@ -87,7 +90,7 @@ var handlers = {
 //Gets the rhyme for a single word
 function getNextWord(contextWord, _callback) {
     var options = {
-        url: 'https://api.datamuse.com/words?rel_rhy=' + contextWord + '&lc=' + contextWord + '&max=30'  // if no max is set, it tends to return off topic words like boat rhymes with right to vote.
+        url: 'https://api.datamuse.com/words?rel_rhy=' + contextWord + '&lc=' + contextWord + '&max=30' // if no max is set, it tends to return off topic words like boat rhymes with right to vote.
     };
 
     request(options, (error, response, body) => {
