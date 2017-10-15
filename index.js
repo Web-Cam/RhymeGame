@@ -56,7 +56,8 @@ var handlers = {
                         seconds--;
                         if (seconds <= 0) {
                             clearInterval(timer);
-                            //this.emit(':tell', ' You ran out of time I win!');
+                            //this.emit(':tell', ' You ran out of time I win!'); //Timers not supported.. 
+				//Great https://forums.developer.amazon.com/questions/53138/we-cant-create-timers-from-within-a-skill-do-we-ha.html
                         }
                     }, 1000);
                 }
@@ -90,7 +91,7 @@ var handlers = {
 //Gets the rhyme for a single word
 function getNextWord(contextWord, _callback) {
     var options = {
-        url: 'https://api.datamuse.com/words?rel_rhy=' + contextWord + '&lc=' + contextWord + '&max=30' // if no max is set, it tends to return off topic words like boat rhymes with right to vote.
+        url: 'https://api.datamuse.com/words?rel_rhy=' + contextWord + '&lc=' + contextWord + '&max=15' // if no max is set, it tends to return off topic words like boat rhymes with right to vote.
     };
 
     request(options, (error, response, body) => {
