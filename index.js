@@ -8,7 +8,7 @@
 var Alexa = require("alexa-sdk");
 var request = require('request');
 var APP_ID = 'amzn1.ask.skill.9e9acde3-0a41-4c7e-a9b2-aea5730bbbc8';
-
+var score = 0;
 var languageStrings = {
     "en": {
         "translation": {
@@ -31,16 +31,16 @@ exports.handler = function(event, context, callback) {
 
 var handlers = {
     'LaunchRequest': function() {
-        this.emit(':ask', "Welcome to Rhyme Game. Here are the rules, you say a word and I will find a rhyme. If you cant think of a rhyme or respond in 5 seconds you lose!, Now begin!");
+        this.emit(':ask', "Welcome to Rhyme Game. Here are the rules, you say a word and I will find a rhyme. If you cant think of a rhyme or say I give up you lose!, Now begin!");
         this.emit('GetNewWordIntent');
     },
 	'EndGameUser': function() {
-        this.emit(':tell', "I win! Better luck next time"); // Pulled ending words instead of calling unhandled, now call this instead.. Put call words in utterances
+        this.emit(':tell', "I win! Better luck next time try to beat your score of " + score); // Pulled ending words instead of calling unhandled, now call this instead.. Put call words in utterances
     },
     'GetNewWordIntent': function() {
         var seconds = 5;
         var wordInput = this.event.request.intent.slots.customWord.value;
-
+		var RNG = Math.floor(Math.random() * 15);
         if (wordInput == null || wordInput === "undefined" || wordInput == '') { //Alexa doesnt understand the word, so User loses.
             this.emit('Unhandled'); //send to unhandled handler
         } else {
@@ -49,6 +49,10 @@ var handlers = {
                 if (speechOutput == '') {
                     this.emit('Unhandled');
                 } else {
+					if (RNG == 9){ 
+					this.emit(':tell', "Hmmmm I cant think of any rhymes Congratulations.......... you win........ with a score of...." + score);}
+					else {
+						score += 1
                     //this.emit(':tellWithCard', speechOutput, this.t("SKILL_NAME"), speechOutput);
                     this.emit(':ask', speechOutput );
                     // Start the five-second timer
@@ -56,11 +60,12 @@ var handlers = {
                         seconds--;
                         if (seconds <= 0) {
                             clearInterval(timer);
-                            //this.emit(':tell', ' You ran out of time I win!'); //Timers not supported.. 
+                           // this.emit(':tell', ' You ran out of time I win!'); //Timers not supported.. 
 				//Great https://forums.developer.amazon.com/questions/53138/we-cant-create-timers-from-within-a-skill-do-we-ha.html
                         }
                     }, 1000);
                 }
+				}
             });
         }
     },
@@ -82,7 +87,7 @@ var handlers = {
             if (speechOutput == '') {
                 this.emit('Unhandled');
             } else {
-                this.emit(':tell', ' There are no rhymes for that word ....You Lose I win .... Try Again? ');
+                this.emit(':tell', " There are no rhymes for that word ....You Lose I win your score was " + score +  ".... Try Again? " );
             }
         });
     }
