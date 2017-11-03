@@ -3,7 +3,7 @@
 Amazon Alexa Rhymegame For Mindsumo Contest!
 Simple game, Big thanks to Benjamin Snoha for some sample that i was able to use.
 
-To play
+# To play
 
 Say any word
 
