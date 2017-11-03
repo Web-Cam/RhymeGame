@@ -1,0 +1,28 @@
+{
+  "intents": [
+    {
+      "slots": [
+        {
+          "name": "customWord",
+          "type": "CUSTOMWORD"
+        }
+      ],
+      "intent": "GetNewWordIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "EndGameUser"
+    },
+    {
+      "intent": "LaunchRequest"
+    }
+  ]
+}

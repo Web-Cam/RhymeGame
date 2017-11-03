@@ -1,0 +1,9 @@
+GetNewWordIntent {customWord}
+EndGameUser I give Up
+EndGameUser End game
+EndGameUser I dont know
+LaunchRequest Start Rhyme Game
+LaunchRequest How do I play
+LaunchRequest Begin
+LaunchRequest Play
+LaunchRequest instructions
