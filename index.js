@@ -7,7 +7,7 @@
 'use strict';
 var Alexa = require("alexa-sdk");
 var request = require('request');
-var APP_ID = 'amzn1.ask.skill.9e9acde3-0a41-4c7e-a9b2-aea5730bbbc8';
+var APP_ID = '';
 var score = 0;
 var languageStrings = {
     "en": {
