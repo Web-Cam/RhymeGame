@@ -20,9 +20,11 @@ ashamed
 astonishing
 attractive
 average
+bad
 batty
 beefy
 bewildered
+biger
 biting
 bitter
 bland
@@ -251,6 +253,7 @@ silly
 skinny
 slimy
 slippery
+slope
 small
 smarmy
 smiling
